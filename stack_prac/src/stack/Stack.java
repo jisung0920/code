@@ -12,8 +12,8 @@ public class Stack {
     }
 
     public Stack() {
-        top = null;
-        s=0;
+    	s =0;
+    	top = null;   	
     }
 
 
@@ -30,39 +30,50 @@ public class Stack {
 
     public void push(String data){
     	Node nNode = new Node(data);
-    	if(size()<1)
-    		top=nNode;
+    	if(isEmpty())
+    		top = nNode;
     	else{
-    		nNode.next=top;
-    		top=nNode;
+    		nNode.next =top;
+    		top =nNode;
     	}
     	s++;
     }
 
     public String top() {
-    	System.out.println("Top data ="+top.data);
-    	return top.data;
+    	if(isEmpty())
+    		return null;
+    	else
+    		return top.data;
     }
 
 
 
     public Node pop(){
-    	Node tmp = top;
-    	top = top.next;
-    	s--;
-    	return tmp;
+    	if(isEmpty())
+    		return null;
+    	else{
+    		Node tmp = top;
+    		top = top.next;
+    		s--;
+    		return tmp;
+    	}
     }
    
 
 
     
     public void printStack(){
-    	Node cur = top;
-    	for(int i=0; i<size();i++){
-    		System.out.print('['+cur.data+']');
-    		cur=cur.next;
+    	if(isEmpty())
+    		System.out.println("stack is empty");
+    	else{
+    		Node cur=top;
+    		while(cur != null){
+    			System.out.print("["+cur.data+"]");
+    			cur = cur.next;
+    		}
+    		System.out.println();
     	}
-    	System.out.println();
+    		
     }
 
 

@@ -107,11 +107,6 @@ public class BST {
 				scc.left_child=cur.left_child;
 				scc.right_child= cur.right_child;
 			}
-			else{
-				cur.parent.left_child=scc;
-				scc.right_child=cur.right_child;
-				return ;
-			}
 
 			if(cur == root){
 				root=scc;

@@ -80,7 +80,7 @@ public class BST {
 			}
 			
 		}//find delete Node
-
+		System.out.println(cur.key);
 		
 		//cur 는 삭제할 노드, par는 삭제할 노드의 부모노드
 		//dir 가 참이면 par의 왼쪽 자식이 cur이다
@@ -106,11 +106,6 @@ public class BST {
 			if(scc!=cur.left_child){
 				scc.left_child=cur.left_child;
 				scc.right_child= cur.right_child;
-			}
-			else{
-				cur.parent.left_child=scc;
-				scc.right_child=cur.right_child;
-				return ;
 			}
 
 			if(cur == root){

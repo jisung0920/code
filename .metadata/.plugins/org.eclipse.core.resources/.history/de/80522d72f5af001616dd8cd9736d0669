@@ -27,7 +27,6 @@ public class BST {
 		Node par = null;
 		
 		if(root == null){
-			newNode.parent=null;
 			root = newNode;
 			return ;
 		}
@@ -38,16 +37,13 @@ public class BST {
 			if(cur.key>key){
 				cur=cur.left_child;
 				if(cur==null){ 
-					newNode.parent=par;
 					par.left_child=newNode;
-
 					return ;
 				}
 			}
 			else{
 				cur = cur.right_child;
 				if(cur==null){
-					newNode.parent =par;
 					par.right_child=newNode;
 					return ;
 				}
@@ -80,7 +76,7 @@ public class BST {
 			}
 			
 		}//find delete Node
-
+		System.out.println(cur.key);
 		
 		//cur 는 삭제할 노드, par는 삭제할 노드의 부모노드
 		//dir 가 참이면 par의 왼쪽 자식이 cur이다
@@ -92,39 +88,34 @@ public class BST {
 				root = null;
 			else
 				par.right_child=null;
-
+			System.out.println("case 1");
 		}//자식 노드가 없는 경우
 		
 		else if(cur.left_child !=null && cur.right_child!= null){
 			Node scc= cur.left_child;
+			Node scc_par = null;
 			
 			while(scc.right_child!=null){
+				scc_par = scc;
 				scc=scc.right_child;
 			}
 			//삭제할 노드의 대체할 노드 scc 를 찾는다, scc의 부모노드는 scc_par이고 scc_par의 오른쪽 자식 노드가 scc이다
-
-			if(scc!=cur.left_child){
-				scc.left_child=cur.left_child;
-				scc.right_child= cur.right_child;
-			}
-			else{
-				cur.parent.left_child=scc;
-				scc.right_child=cur.right_child;
-				return ;
-			}
-
+		
+			scc.left_child=cur.left_child;
+			scc.right_child= cur.right_child;
 			if(cur == root){
 				root=scc;
-			}
-			else if(dir){
-				par.left_child = scc;
+				cur=null;
 			}
 			else{
-				par.right_child = scc;
+				scc.parent = cur.parent;
+				cur=scc;
 			}
 			
-			scc.parent.right_child=null;
+			scc_par.right_child=null;		
 
+			
+			System.out.println("case 2 / "+scc.key+"/");
 		}//자식노드가 2개 있는 경우
 		else{
 			Node sub;
@@ -142,7 +133,7 @@ public class BST {
 				par.right_child =sub;
 			
 			sub.parent = par;
-
+			System.out.println("case 3 :"+par.key+"/"+sub.key);
 			
 		}//자식 노드가 1 개인 경우
 

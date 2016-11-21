@@ -80,7 +80,7 @@ public class BST {
 			}
 			
 		}//find delete Node
-
+		System.out.println(cur.key);
 		
 		//cur 는 삭제할 노드, par는 삭제할 노드의 부모노드
 		//dir 가 참이면 par의 왼쪽 자식이 cur이다
@@ -92,7 +92,7 @@ public class BST {
 				root = null;
 			else
 				par.right_child=null;
-
+			System.out.println("case 1");
 		}//자식 노드가 없는 경우
 		
 		else if(cur.left_child !=null && cur.right_child!= null){
@@ -108,11 +108,12 @@ public class BST {
 				scc.right_child= cur.right_child;
 			}
 			else{
-				cur.parent.left_child=scc;
 				scc.right_child=cur.right_child;
+				cur =scc;
+				scc.parent.left_child=null;
+				
 				return ;
 			}
-
 			if(cur == root){
 				root=scc;
 			}
@@ -124,7 +125,8 @@ public class BST {
 			}
 			
 			scc.parent.right_child=null;
-
+			
+			System.out.println("case 2 / "+scc.key+"/");
 		}//자식노드가 2개 있는 경우
 		else{
 			Node sub;
@@ -142,7 +144,7 @@ public class BST {
 				par.right_child =sub;
 			
 			sub.parent = par;
-
+			System.out.println("case 3 :"+par.key+"/"+sub.key);
 			
 		}//자식 노드가 1 개인 경우
 

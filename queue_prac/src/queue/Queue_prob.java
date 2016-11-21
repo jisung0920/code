@@ -2,6 +2,7 @@ package queue;
 
 
 public class Queue_prob {
+<<<<<<< HEAD
 	
 	Node front;
 	Node back;
@@ -10,12 +11,22 @@ public class Queue_prob {
 		int data;
 		Node next;
 		private Node(int data){
+=======
+	private Node front;
+	private Node back;
+	
+	private class Node{
+		private int data;
+		private Node next;
+		Node(int data){
+>>>>>>> origin/master
 			this.data = data;
 		}
 	}
 	public Queue_prob() {
 		front = null;
 		back = null;
+<<<<<<< HEAD
 		
 	}
 
@@ -58,14 +69,37 @@ public class Queue_prob {
 			}
 			System.out.println();
 		}
+=======
+		front.next=back; 
+	}
+
+	public void enqueue(int data){
+		Node nNode = new Node()
+	}
+
+	public Node dequeue(){
+		
+		return null;
+	}
+
+	public void printQueue(){
+>>>>>>> origin/master
 		
 	}
 
 	public boolean isEmpty(){
+<<<<<<< HEAD
 		if(front == null)
 			return true;
 		else
 			return false;
+=======
+		if(front == null){
+			return true;
+		} else {
+			return false;
+		}
+>>>>>>> origin/master
 	}
 
 }

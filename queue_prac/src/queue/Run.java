@@ -16,7 +16,10 @@ public class Run {
 		que.enqueue(4);
 		que.printQueue();
 		que.enqueue(5);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> origin/master
 		que.printQueue();
 		System.out.println();
 		

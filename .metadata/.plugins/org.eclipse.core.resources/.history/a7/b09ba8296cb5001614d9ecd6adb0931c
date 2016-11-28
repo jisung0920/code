@@ -1,0 +1,60 @@
+package sort;
+
+
+public class QuickSort {
+	private int[] array;
+    private int length;
+ 
+    public void sort(int[] inputArr) {
+         
+        if (inputArr == null || inputArr.length == 0) {
+            return;
+        }
+        ////////////////////
+        array = inputArr;
+        length = inputArr.length;
+        quickSort(0,length-1);
+        
+        /////////////////////
+    }
+ 
+    private void quickSort(int low, int high) {
+    	if(high<=1)
+    		return ;
+    	if(low>high)
+    		return ;
+    	int pivot = array[high];
+    	int i = low;
+        int j = high-1;
+        System.out.println("pivot is : "+array[high]);
+        
+        // Divide into two arrays
+        while (i <= j) {
+        	while(array[i]<pivot)
+        		i++;
+        	while(array[j]>pivot)
+        		j--;
+
+        	swap(i,j);
+
+        }
+        System.out.println("i is :"+i+"  j is :"+j);
+        swap(i,j);
+        swap(i,high);
+        
+        quickSort(low,j);
+
+       	quickSort(j+1,high);
+
+            
+        }
+
+ 
+    private void swap(int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+     
+  
+}

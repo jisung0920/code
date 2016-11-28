@@ -1,0 +1,80 @@
+package sort;
+
+
+public class MergeSort {
+	private int[] array;
+	private int[] helper;
+
+	private int size;
+
+	public void sort(int[] inputArr) {
+		if (inputArr == null || inputArr.length == 0) {
+			return;
+	    }
+		
+		size = inputArr.length;
+		array =inputArr;
+		helper = new int[size];
+		
+		mergesort(0,size-1);
+		////////////////
+		
+		
+		
+		///////////////
+	  }
+
+	  private void mergesort(int low, int high) {
+	    // check if low is smaller then high, if not then the array is sorted
+		  System.out.println("mergesort low:"+low+"   high:"+high );
+		  
+		  if (low < high) {
+			int mid = (low+high)/2;
+	    	mergesort(low,mid);
+	    	mergesort(mid+1,high);
+	    	merge(low,mid,high);
+		  }
+		  else{
+			  return ;
+		  }
+	  }
+
+	  private void merge(int low, int middle, int high) {
+	  System.out.println("merge low:"+low+"    mid"+middle+"   high:"+high );
+	    // Copy both parts into the helper array
+	    /*for (int i = low; i <= high; i++) {
+	      helper[i] = array[i];
+	    }*/
+	   
+	    int left = low;
+	    int right = middle+1;
+	    int cur=low;
+	    while(left<=middle && right<=high){
+	    	if(array[left]<array[right]){
+	    		helper[cur++]=array[left++];
+	    	}
+	    	else{
+	    		helper[cur++]=array[right++];
+	    	}
+	    }
+	    while(left<=middle){
+	    	helper[cur++]=array[left++];
+	    }
+	    while(right<=high){
+    		helper[cur++]=array[right++];
+	    }
+	    for (int i = low; i <= high; i++) {
+		      array[i] = helper[i];
+		    }
+		   
+	    // Copy the smallest value from either the left or the right side back
+	    // to the original array
+	   
+	    
+	    
+	    // Copy the rest of the left side of the array into the target array
+	    
+	    
+	  }
+
+}

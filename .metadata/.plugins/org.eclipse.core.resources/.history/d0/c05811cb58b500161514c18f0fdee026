@@ -1,0 +1,47 @@
+
+public class MergeSort {
+	private int[] array;
+	private int[] helper;
+
+	private int size;
+
+	public void sort(int[] inputArr) {
+		if (inputArr == null || inputArr.length == 0) {
+			return;
+	    }
+		////////////////
+		
+		
+		
+		///////////////
+	  }
+
+	  private void mergesort(int low, int high) {
+	    // check if low is smaller then high, if not then the array is sorted
+	    if (low < high) {
+	      
+	    }
+	  }
+
+	  private void merge(int low, int middle, int high) {
+
+	    // Copy both parts into the helper array
+	    for (int i = low; i <= high; i++) {
+	      helper[i] = array[i];
+	    }
+/*
+	    int i = ;
+	    int j = ;
+	    int k = ;
+*/
+	    // Copy the smallest value from either the left or the right side back
+	    // to the original array
+	   
+	    
+	    
+	    // Copy the rest of the left side of the array into the target array
+	    
+	    
+	  }
+
+}

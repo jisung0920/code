@@ -47,7 +47,8 @@ public class Run {
 		System.out.print("After delete(2) : ");
 		bst.printPreorder(bst.getRoot());
 		System.out.println();
-		
+		bst.delete(1);
+
 		System.out.print("Search(8) -> ");
 		if(bst.search(8) == null)
 			System.out.println("There is no 8");

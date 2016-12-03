@@ -1,0 +1,56 @@
+package sort;
+
+
+public class MergeSort {
+	private int[] array;
+	private int[] helper;
+
+	private int size;
+
+	public void sort(int[] inputArr) {
+		if (inputArr == null || inputArr.length == 0) {
+			return;
+	    }
+		
+		size = inputArr.length;
+		array =inputArr;
+		helper = new int[size];
+		
+		mergesort(0,size-1);
+		////////////////
+		for(int i=0;i<size;i++)
+			array[i]=helper[i];
+		
+		
+		///////////////
+	  }
+
+	  private void mergesort(int low, int high) {
+		  if(low>=high+1)
+			  return ;
+		  int mid = (low+high)/2;
+		  mergesort(low,mid);
+		  mergesort(mid+1,low);
+		  merge(low,mid,low);
+	
+	  }
+
+	  private void merge(int low, int middle, int high) {
+		  int left =low;
+		  int right = middle+1;
+		  int cur=low;
+		  
+		  while(left<middle+1 && right<high+1 ){
+			  if(array[left]<array[right])
+				  helper[cur++] = array[left++];
+			  else
+				  helper[cur++] = array[right++];
+		  }
+		  while(left<middle+1){
+			  helper[cur++] = array[left++];
+		  }
+		  while(right<high+1){
+			  helper[cur++] = array[right++];
+		  }
+	  }
+}

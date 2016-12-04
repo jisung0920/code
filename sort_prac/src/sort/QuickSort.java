@@ -15,13 +15,11 @@ public class QuickSort {
     }
  
     private void quickSort(int low, int high) {
-    	if(high<low)
+    	if(low>high)
     		return ;
     	int idx = (low+high)/2;
     	int pivot = array[idx];
-    	
-    	int left = low;
-    	int right = high;
+    	int left= low, right =high;
     	while(left<right){
     		while(array[left]<pivot)
     			left++;
@@ -30,9 +28,8 @@ public class QuickSort {
     		if(left<right)
     			swap(left,right);
     	}
-    	quickSort(low,left-1);
+    	quickSort(low, left-1);
     	quickSort(left+1,high);
-
     }
 
  

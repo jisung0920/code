@@ -21,107 +21,71 @@ public class BST {
 	}
 	
 	public void insert(int key){
-
+		Node cur =root;
 		if(root == null){
 			makeRoot(key);
 			return ;
 		}
-
-		Node cur=root;
 		Node par = cur;
-		
-		
-		while(cur!=null){
-			par = cur;
-			if(cur.key >key){
-				cur = cur.left_child;
-				dir =true;
+		while(cur !=null){
+			par=cur;
+			if(cur.key>key){
+				cur=cur.left_child;
+				dir=true;
 			}
 			else{
-				cur= cur.right_child;
-				dir =false;
+				cur=cur.right_child;
+				dir=false;
 			}
 		}
-		
 		if(dir)
 			makeLeftNode(par, key);
 		else
 			makeRightNode(par, key);
-
-
 	}
 	public void delete(int key){
 		Node del = search(key);
-		if(del == null){
-			System.out.println("not exist");
+		if(del==null)
 			return ;
-		}
-		Node par = del.parent;
+		Node par =del.parent;
 		if(externalNode(del)){
 			if(dir)
 				par.left_child=null;
-			
 			else
 				par.right_child=null;
 		}
-		else if(del.left_child != null && del.right_child !=null){
+		else if(del.left_child != null && del.right_child != null){
 			Node cur = del.left_child;
-			while(cur.right_child!=null)
-				cur = cur.right_child;
-			if(cur.left_child!=null){
-				cur.parent.right_child=cur.left_child;
-				cur.left_child.parent = cur.parent;
-			}
-			else if(cur==del.left_child){
-				cur.parent = del.parent;
-				cur.right_child=del.right_child;
-				del.parent.left_child=cur;
-				del =cur;
-				return ;
-			}
-			else
-				cur.parent.right_child=null;
-			replaceNode(del, cur);			
+			while(cur.right_child !=null)
+				cur =cur.right_child;
+			replaceNode(del, cur);
 		}
 		else{
-			if(del.left_child != null){
-				if(dir)
-					del.parent.left_child=del.left_child;
-				else
-					del.parent.right_child=del.left_child;
-			}
-			else{
-				if(dir)
-					del.parent.left_child=del.right_child;
-				else
-					del.parent.right_child=del.right_child;
-			}
+			if(del.left_child !=null)
+				replaceNode(del, del.left_child);
+			else
+				replaceNode(del, del.right_child);
 		}
+
 	}
 	
 
 	public Node search(int key){
-		if(root==null){
-			System.out.println("empty node");
-			return null;
-		}
-		Node cur=root;
-		while(true){
-			if(cur.key == key)
+		Node cur = root;
+		while(cur != null){
+			if(cur.key==key)
 				return cur;
-			else if(cur.key<key){
-				cur =cur.right_child;
-				dir = false;
+			else if(cur.key>key){
+				cur=cur.left_child;
+				dir =true;
 			}
 			else{
-				cur = cur.left_child;
-				dir = true;
-			}
-			if(cur==null){
-				System.out.println("is not exist");
-				return null;
+				cur = cur.right_child;
+				dir =false;
 			}
 		}
+		return null;
+
 	}
 	public void printPreorder(Node node){
 		if(node == null)
@@ -152,41 +116,39 @@ public class BST {
 		return root;
 	}
 	
+	public boolean externalNode(Node node){
+		if(node.left_child == null && node.right_child == null)
+			return true;
+		else
+			return false;
+	}
 	public void makeRoot(int key){
 		Node nNode = new Node(key);
 		root = nNode;
 	}
 	
-	public void makeLeftNode(Node node,int key){
+	public void makeLeftNode(Node par,int key){
 		Node nNode = new Node(key);
-		node.left_child = nNode;
-		nNode.parent = node;
+		par.left_child = nNode;
+		nNode.parent = par;
+	}
+	public void makeRightNode(Node par,int key){
+		Node nNode = new Node(key);
+		par.right_child = nNode;
+		nNode.parent = par;
 	}
 	
-	public void makeRightNode(Node node , int key){
-		Node nNode = new Node(key);
-		node.right_child = nNode;
-		nNode.parent = node;
-	}
-	
-	public void replaceNode(Node del, Node node){
-		
-		node.parent=del.parent;
-		node.right_child = del.right_child;
-		node.left_child = del.left_child;
-		
-		if(del==root){
-			root=node;
+	public void replaceNode(Node del,Node cur){
+		if(cur == null){
+			del = null;
 			return ;
 		}
-		del = node;
-		
+		del.key = cur.key;
+		if(cur.parent.left_child ==cur)
+			cur.parent.left_child =null;
+		else if(cur.parent.right_child == cur)
+			cur.parent.right_child =null;
 	}
 	
-	public boolean externalNode(Node node){
-		if(node.left_child == null && node.right_child ==null)
-			return true;		
-		else
-			return false;
-	}
+
 }

@@ -1,0 +1,27 @@
+package sort;
+
+
+public class MergeSort {
+	private int[] array;
+	private int[] helper;
+
+	private int size;
+
+	public void sort(int[] inputArr) {
+		if (inputArr == null || inputArr.length == 0) {
+			return;
+	    }
+		size= inputArr.length;
+		array = inputArr;
+		helper = new int[size];
+		mergesort(0,size-1);
+	  }
+
+	  private void mergesort(int low, int high) {
+		  
+	  }
+
+	  private void merge(int low, int middle, int high) {
+
+	  }
+}
